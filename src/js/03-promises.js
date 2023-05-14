@@ -1,3 +1,4 @@
+import Notiflix from 'notiflix';
 const form = document.querySelector('.form');
 const delayInput = document.querySelector(`[name="delay"]`);
 const stepInput = document.querySelector(`[name="step"]`);
@@ -24,7 +25,9 @@ function onFormSubmit(event) {
   for (let position = 1; position <= amount; position += 1) {
     createPromise(position, delay + step * (position - 1))
       .then(({ position, delay }) => {
-        alert(`✅ Fulfilled promise ${position} in ${delay}ms`);
+        Notiflix.Notify.success(
+          `✅ Fulfilled promise ${position} in ${delay}ms`
+        );
       })
       .catch(({ position, delay }) => {
         Notiflix.Notify.failure(
